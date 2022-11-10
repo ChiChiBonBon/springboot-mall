@@ -1,5 +1,6 @@
 package com.chichibonbon.springbootmall.service.impl;
 
+import com.chichibonbon.springbootmall.constant.ProductCategory;
 import com.chichibonbon.springbootmall.dao.ProductDao;
 import com.chichibonbon.springbootmall.dto.ProductRequest;
 import com.chichibonbon.springbootmall.model.Product;
@@ -16,17 +17,19 @@ public class ProductServiceImpl implements ProductService {
     private ProductDao productDao;
 
     @Override
-    public List<Product> getProducts() {
-        return productDao.getProducts();
+    public List<Product> getProducts(ProductCategory category,String search) {
+        return productDao.getProducts(category,search);
     }
 
     @Override
     public Product getProductById(Integer productId) {
+
         return productDao.getProductById(productId);
     }
 
     @Override
     public Integer createProduct(ProductRequest productRequest) {
+
         return productDao.createProduct(productRequest);
     }
 
@@ -37,6 +40,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteProductById(Integer productId) {
+
         productDao.deleteProductById(productId);
     }
 }

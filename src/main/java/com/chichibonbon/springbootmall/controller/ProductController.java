@@ -1,5 +1,6 @@
 package com.chichibonbon.springbootmall.controller;
 
+import com.chichibonbon.springbootmall.constant.ProductCategory;
 import com.chichibonbon.springbootmall.dto.ProductRequest;
 import com.chichibonbon.springbootmall.model.Product;
 import com.chichibonbon.springbootmall.service.ProductService;
@@ -29,8 +30,11 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public ResponseEntity<List<Product>> getProducts(){
-        List<Product> productList = productService.getProducts();
+    public ResponseEntity<List<Product>> getProducts(
+            @RequestParam(required = false) ProductCategory category,
+            @RequestParam(required = false) String search
+    ){
+        List<Product> productList = productService.getProducts(category,search);
 
         return ResponseEntity.status(HttpStatus.OK).body(productList);
     }
